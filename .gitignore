@@ -1,0 +1,8 @@
+.ipynb_checkpoints/
+__pycache__/
+.DS_Store
+
+# Licensed data (e.g. WRDS / I/B/E/S) must not be published
+data/
+*.csv
+*.xlsx
