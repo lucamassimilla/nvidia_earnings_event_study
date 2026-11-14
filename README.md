@@ -30,6 +30,16 @@ The evidence is consistent with prices reacting to guidance, AI-demand commentar
 
 ![Average cumulative abnormal return](figures/caar_window.png)
 
+## Conclusion
+
+The question was whether Nvidia's price reaction to earnings is driven by fundamentals (the reported numbers) or by narrative (guidance and the story around AI demand). The evidence points to narrative.
+
+Nvidia beat the consensus EPS in 21 of 23 quarters, so a beat is fully expected and carries little news. The size of the surprise explains only 7% of the reaction and is not statistically significant, while the reaction itself is large: the stock moves 6% on average in either direction, and 7 of 23 releases are significant on their own. The two most telling cases make the point: the largest beat in the sample (August 2023, +29%) was followed by a slightly negative reaction, while May 2023 produced the largest jump (+22.8%) because of revenue guidance, not the quarter's EPS.
+
+For an investor, this means the consensus EPS is the wrong benchmark: what moves the stock is how results and guidance compare with expectations that are higher than the published consensus. On earnings day, guidance matters more than the beat.
+
+These results show what the EPS surprise does *not* explain; they do not directly measure the narrative channel. Testing it requires guidance and forward-estimate data, the natural next step.
+
 ---
 
 ## Method
@@ -70,6 +80,7 @@ Study parameters (tickers, dates, estimation and event windows) are set in the f
 ```
 ├── nvidia_event_study.ipynb   # Part 1: earnings event study
 ├── nvidia_analyst_cuts.ipynb  # Part 2: analyst cut waves
+├── nvidia_customers.ipynb     # Part 3: customer network (needs WRDS access)
 ├── figures/                   # charts used in this README
 ├── requirements.txt
 └── README.md
@@ -107,7 +118,7 @@ On 12 November 2026 Nvidia received 12 target-price cuts and 8 downgrades in a s
 
 This part maps Nvidia's disclosed customers, suppliers and competitors using **FactSet Revere** supply-chain data, accessed through WRDS (Wharton Research Data Services) under a university licence.
 
-> **Why the code and data are not in this repository.** The WRDS licence does not allow FactSet data to be redistributed, and the analysis cannot be reproduced without a WRDS subscription. Only the aggregated results are reported below; the underlying records are not published.
+> **Data note.** The code (`nvidia_customers.ipynb`) and its aggregated outputs are included, but the FactSet records themselves are not: the WRDS licence does not allow them to be redistributed. Running the notebook requires a WRDS account with FactSet Revere access; with `PUBBLICO = True` it prints only aggregated results.
 
 - **Many names, few that matter.** Customers named in public sources grew from 61 (2018) to 283 (November 2026), yet three direct customers accounted for 44% of revenue in the first half of fiscal 2027 (Nvidia 10-Q).
 - **Frenemies.** Alphabet, Amazon and Microsoft, among others, are recorded as both customers and competitors: the largest buyers are also building alternative AI chips.
@@ -119,6 +130,17 @@ This part maps Nvidia's disclosed customers, suppliers and competitors using **F
 ![China-based customers](figures/china_customers.png)
 
 **Limitations:** FactSet records disclosed relationships, so an end date is not a cancelled contract; China-based customers are flagged by company name; no contract terms are available.
+
+---
+
+## Key takeaways
+
+1. **The EPS beat is not what moves Nvidia.** Across 23 earnings releases the stock beat consensus 21 times, yet reacted negatively 13 times; the size of the surprise explains only 7% of the reaction. Guidance and the AI narrative matter more than the reported number.
+2. **Analysts follow the price.** Waves of target cuts came after the stock had already fallen 30–50%. In the short run the stock often kept falling; twelve months later the cuts had proved too pessimistic in three of four cases.
+3. **The real risk is concentration, not breadth.** Nvidia names hundreds of customers, but a handful of buyers drive revenue, and the largest of them are building their own chips. China-based customers have largely left the network.
+4. **History has limits.** Nvidia is an extreme winner, so its past recoveries say little about the probability of recovery today, especially after a governance and regulatory shock with no precedent in the sample.
+
+*Built with AI assistance (Claude) for coding. Research questions, data sourcing and interpretation are my own.*
 
 ---
 
